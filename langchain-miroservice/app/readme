@@ -1,0 +1,11 @@
+python -m venv venv
+venv\Scripts\activate
+pip install fastapi uvicorn python-dotenv langchain langchain-openai
+pip install black isort
+pip install duckduckgo-search
+
+
+
+pip show langchain
+
+uvicorn app.main:app --reload
