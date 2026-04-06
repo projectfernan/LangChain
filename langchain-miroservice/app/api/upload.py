@@ -1,7 +1,13 @@
-from fastapi import APIRouter, HTTPException, UploadFile, File, Form
+from fastapi import APIRouter, File, Form, HTTPException, UploadFile
+
 from app.models.chat_models import UploadChatResponse
-from app.services.tools import UPLOADS_DIR, ALLOWED_EXTENSIONS, MAX_FILE_SIZE_BYTES, MAX_PDF_FILE_SIZE_BYTES
 from app.services.chat_service import get_chat_reply
+from app.services.tools import (
+    ALLOWED_EXTENSIONS,
+    MAX_FILE_SIZE_BYTES,
+    MAX_PDF_FILE_SIZE_BYTES,
+    UPLOADS_DIR,
+)
 
 router = APIRouter()
 

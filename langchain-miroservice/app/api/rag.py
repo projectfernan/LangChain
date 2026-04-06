@@ -1,7 +1,13 @@
-from fastapi import APIRouter, HTTPException, UploadFile, File
-from app.models.chat_models import RagUploadResponse, RagChatRequest, RagChatResponse
-from app.services.tools import UPLOADS_DIR, ALLOWED_EXTENSIONS, MAX_FILE_SIZE_BYTES, MAX_PDF_FILE_SIZE_BYTES
+from fastapi import APIRouter, File, HTTPException, UploadFile
+
+from app.models.chat_models import RagChatRequest, RagChatResponse, RagUploadResponse
 from app.services.rag_service import ingest_document, rag_chat
+from app.services.tools import (
+    ALLOWED_EXTENSIONS,
+    MAX_FILE_SIZE_BYTES,
+    MAX_PDF_FILE_SIZE_BYTES,
+    UPLOADS_DIR,
+)
 
 router = APIRouter(prefix="/rag")
 
@@ -37,7 +43,10 @@ async def rag_upload(file: UploadFile = File(...)):
         return RagUploadResponse(
             filename=file.filename,
             chunks=chunks,
-            message=f"'{file.filename}' ingested into {chunks} chunks. You can now chat with it via POST /rag/chat."
+            message=(
+                f"'{file.filename}' ingested into {chunks} chunks. "
+                "You can now chat with it via POST /rag/chat."
+            )
         )
     except HTTPException:
         raise

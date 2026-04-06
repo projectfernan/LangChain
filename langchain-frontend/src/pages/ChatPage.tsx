@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useMemo } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import ChatBox from '@/components/ChatBox'
 import MessageInput from '@/components/MessageInput'
@@ -9,7 +9,7 @@ import type { Message } from '@/types'
 export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([])
   const [isStreaming, setIsStreaming] = useState(false)
-  const sessionId = useRef(uuidv4())
+  const sessionId = useMemo(() => uuidv4(), [])
   const bottomRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function ChatPage() {
     const detectedTools: string[] = []
 
     await streamMessage(
-      sessionId.current,
+      sessionId,
       text,
       (chunk) => {
         // Detect tool usage from stream
@@ -90,7 +90,7 @@ export default function ChatPage() {
     <div className="flex flex-col h-full">
       <div className="p-4 border-b">
         <p className="text-xs text-muted-foreground">
-          Session: {sessionId.current.slice(0, 8)}...
+          Session: {sessionId.slice(0, 8)}...
         </p>
       </div>
 

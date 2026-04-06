@@ -1,9 +1,9 @@
 import math
-import os
 from datetime import datetime, timezone
 from pathlib import Path
-from langchain_core.tools import tool
+
 from duckduckgo_search import DDGS
+from langchain_core.tools import tool
 
 UPLOADS_DIR = Path(__file__).resolve().parents[2] / "uploads"
 ALLOWED_EXTENSIONS = {".txt", ".csv", ".json", ".md", ".py", ".pdf"}

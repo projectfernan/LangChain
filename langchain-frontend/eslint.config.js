@@ -20,4 +20,12 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
+  // ShadCN UI files export both components and helper functions (e.g. buttonVariants)
+  // which triggers react-refresh/only-export-components — safe to disable for generated UI files
+  {
+    files: ['src/components/ui/**/*.{ts,tsx}'],
+    rules: {
+      'react-refresh/only-export-components': 'off',
+    },
+  },
 ])

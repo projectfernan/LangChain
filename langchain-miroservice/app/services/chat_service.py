@@ -1,4 +1,3 @@
-import asyncio
 from typing import AsyncGenerator
 
 from langchain_core.messages import (
@@ -15,8 +14,7 @@ from app.core.config import (
     get_model,
     get_summarizer_model,
 )
-from app.services.tools import calculator, get_current_datetime, search_web, read_file
-
+from app.services.tools import calculator, get_current_datetime, read_file, search_web
 
 _model = get_model()
 _summarizer = get_summarizer_model()

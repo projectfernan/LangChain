@@ -1,8 +1,9 @@
 from fastapi import FastAPI
-from app.api.chat import router as chat_router
-from app.api.upload import router as upload_router
-from app.api.rag import router as rag_router
 from fastapi.middleware.cors import CORSMiddleware
+
+from app.api.chat import router as chat_router
+from app.api.rag import router as rag_router
+from app.api.upload import router as upload_router
 
 app = FastAPI(title="LangChain Chat API")
 

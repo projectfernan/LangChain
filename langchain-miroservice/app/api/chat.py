@@ -1,6 +1,8 @@
 import asyncio
+
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import StreamingResponse
+
 from app.models.chat_models import ChatRequest, ChatResponse, StreamRequest
 from app.services.chat_service import get_chat_reply, stream_chat_reply
 
