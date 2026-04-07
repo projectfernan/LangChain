@@ -6,7 +6,7 @@ from langchain_core.messages import (
     SystemMessage,
     trim_messages,
 )
-from langgraph.prebuilt import create_react_agent
+from langchain.agents import create_agent
 
 from app.core.config import (
     SUMMARY_PROMPT,
@@ -21,10 +21,10 @@ _summarizer = get_summarizer_model()
 
 TOOLS = [calculator, get_current_datetime, search_web, read_file]
 
-_agent = create_react_agent(
+_agent = create_agent(
     model=_model,
     tools=TOOLS,
-    prompt=(
+    system_prompt=(
         "You are a helpful assistant. You have access to the following tools:\n"
         "- calculator: for arithmetic and math expressions\n"
         "- get_current_datetime: for the current date and time\n"
