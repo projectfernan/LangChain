@@ -1,0 +1,19 @@
+services:
+  backend:
+    build: ./langchain-miroservice
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./langchain-miroservice/.env
+    volumes:
+      - ./langchain-miroservice/uploads:/app/uploads
+
+  frontend:
+    build:
+      context: ./langchain-frontend
+      args:
+        VITE_API_URL: http://localhost:8000
+    ports:
+      - "8182:80"
+    depends_on:
+      - backend

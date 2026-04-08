@@ -1,0 +1,18 @@
+services:
+  backend:
+    image: registry.digitalocean.com/${DO_REGISTRY_NAME}/backend:latest
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./uploads:/app/uploads
+
+  frontend:
+    image: registry.digitalocean.com/${DO_REGISTRY_NAME}/frontend:latest
+    restart: unless-stopped
+    ports:
+      - "8182:80"
+    depends_on:
+      - backend
