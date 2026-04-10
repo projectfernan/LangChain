@@ -1,6 +1,6 @@
 services:
   backend:
-    image: registry.digitalocean.com/${DO_REGISTRY_NAME}/backend:latest
+    image: registry.digitalocean.com/langchain-demo-container/backend:latest
     restart: unless-stopped
     ports:
       - "8000:8000"
@@ -10,7 +10,7 @@ services:
       - ./uploads:/app/uploads
 
   frontend:
-    image: registry.digitalocean.com/${DO_REGISTRY_NAME}/frontend:latest
+    image: registry.digitalocean.com/langchain-demo-container/frontend:latest
     restart: unless-stopped
     ports:
       - "8182:80"
