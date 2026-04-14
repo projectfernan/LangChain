@@ -5,7 +5,11 @@ from app.api.chat import router as chat_router
 from app.api.rag import router as rag_router
 from app.api.upload import router as upload_router
 
-app = FastAPI(title="LangChain Chat API", root_path="/api")
+app = FastAPI(
+    title="LangChain Chat API",
+    root_path="/api",
+    swagger_ui_parameters={"url": "/api/openapi.json"},
+)
 
 # Add CORS for React
 app.add_middleware(
