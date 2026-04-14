@@ -5,7 +5,6 @@ Verifies allowed extensions and size limits used by upload endpoints.
 
 from app.services.tools import ALLOWED_EXTENSIONS, MAX_FILE_SIZE_BYTES, MAX_PDF_FILE_SIZE_BYTES
 
-
 # - Allowed extensions -
 
 def test_txt_is_allowed():

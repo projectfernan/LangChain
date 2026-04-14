@@ -4,7 +4,6 @@ Tests for calculator, get_current_datetime, read_file, and search_web tools.
 
 from app.services.tools import calculator, get_current_datetime, read_file, search_web
 
-
 # ─ calculator ─
 
 def test_calculator_addition():
@@ -108,7 +107,8 @@ def test_search_web_returns_formatted_results(mocker):
     mock_results = [
         {"title": "Test Title", "href": "https://google.com", "body": "Test summary"}
     ]
-    mocker.patch("app.services.tools.DDGS").return_value.__enter__.return_value.text.return_value = mock_results
+    ddgs_mock = mocker.patch("app.services.tools.DDGS")
+    ddgs_mock.return_value.__enter__.return_value.text.return_value = mock_results
     result = search_web.func("test query")
     assert "Test Title" in result
     assert "https://google.com" in result
@@ -117,7 +117,8 @@ def test_search_web_returns_formatted_results(mocker):
 
 def test_search_web_no_results(mocker):
     """Empty search results must return a clear message."""
-    mocker.patch("app.services.tools.DDGS").return_value.__enter__.return_value.text.return_value = []
+    ddgs_mock = mocker.patch("app.services.tools.DDGS")
+    ddgs_mock.return_value.__enter__.return_value.text.return_value = []
     result = search_web.func("obscure query with no results")
     assert result == "No results found."
 
